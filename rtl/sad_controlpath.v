@@ -1,9 +1,12 @@
-module sad_controlpath(clk,rst,go,sad_reg,i);
+module sad_controlpath(A,B,clk,rst,go,sad_reg,i);
+input [7:0] A,B;
 input rst,clk,go;
 output [31:0]sad_reg;
 output [8:0] i;
 
-wire[7:0] diff,A,B;
+
+
+wire[7:0] diff;
 wire bout;
 wire [31:0]abs_diff;
 
@@ -111,6 +114,6 @@ begin
 		sad_reg<=sad_reg;
 
 end                  
-assign abs_diff = {bout,diff};
+assign abs_diff = diff;
 
 endmodule
