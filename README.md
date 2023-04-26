@@ -1,5 +1,5 @@
 # SAD_full_search
-Design project
+Design project:
 
 Members: 
 1. Akshay Dandekar
