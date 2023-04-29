@@ -54,10 +54,6 @@ begin
 		endcase
 	end
 end
-
-always @(posedge clk)
-begin
-	empty<=(FIFO_count==0);
-	full<=(FIFO_count==256);
-end
+assign full = (FIFO_count==256);
+assign empty = (FIFO_count==0);
 endmodule
