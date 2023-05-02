@@ -37,8 +37,13 @@ begin
 end		
 
 always @ (*) //next state logic
-begin
-		data_load = 1'b0;		//default value of data_load signal
+begin						//Assigning default values to all control signals
+		data_load = 1'b0;
+		sum_clr=1'b0;
+		i_clr=1'b0;
+		i_inc=1'b0;
+		sum_load=1'b0;
+		sad_load=1'b0;		
 		case(pst)
 	
 		s0: nxt = (go==1)?s1:s0;
@@ -66,6 +71,8 @@ begin
 			nxt = s0;
 			end
 	
+		default: nxt = s0;
+			
 		endcase
 end
 //*********************************************************
@@ -79,12 +86,10 @@ begin
 	if(i_clr || (i == 256)) 
 	begin
 		i<=1'b0;
-		i_clr<=1'b0;
 	end
 	else if(i_inc)
 	begin
 		i<=i+1;
-		i_inc<=1'b0;
 	end
 	else 
 		i<=i;
@@ -95,12 +100,10 @@ begin
 		if(sum_clr)
 		begin
 			sum<=32'b0;
-			sum_clr<=1'b0;
 		end
 		else if(sum_load) 
 		begin
 			sum<=sum+abs_diff;
-			sum_load<=1'b0;
 		end
 		else 
 			sum<=sum;	 
@@ -111,7 +114,6 @@ begin
 	if(sad_load)
 	begin
 		sad_reg<=sum;
-		sad_load<=1'b0;
 	end
 	else 
 		sad_reg<=sad_reg;
