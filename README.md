@@ -4,4 +4,4 @@ Design project:
 Members: 
 1. Akshay Dandekar
 2. Nutan Satya Sai Raj K.
-3. Abhinav Sai Gude
+3. Gopi Bhanu Chandar
