@@ -1,4 +1,4 @@
-module FIFO_synchronous(input [7:0]data_in, input clk,rst,rd,wr,output reg empty,full,output reg [8:0] FIFO_count,output reg [7:0]data_out);
+module FIFO_synchronous(input [7:0]data_in, input clk,rst,rd,wr,output empty,full,output reg [8:0] FIFO_count,output reg [7:0]data_out);
 reg [7:0]FIFO_memory[255:0];				//256 memory locations, each of size 8-bits declared
 reg [7:0]rd_ptr,wr_ptr;						//8 bit pointer declared as 256 memory locations are present. 9-bit FIFO_count is taken in order to flag full, as it's not possible if 8 bit FIFO_count can count till only 255
 always @(posedge clk)
@@ -54,10 +54,6 @@ begin
 		endcase
 	end
 end
-
-always @(posedge clk)
-begin
-	empty<=(FIFO_count==0);
-	full<=(FIFO_count==256);
-end
+assign full = (FIFO_count==256);
+assign empty = (FIFO_count==0);
 endmodule
